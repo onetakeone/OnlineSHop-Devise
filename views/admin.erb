@@ -1,16 +1,22 @@
 <h2>admin</h2>
-
-<table class="table">
 <% @admin_orders.each_with_index do |item, i|%>
-<tr>
-<td><%= item.name %></td>
-<td><%= item.phone %></td>
-<% @array.each_with_index do |a, x| %>
-	<td><%= @product.find(a[0]).title %></td>
-	<td><%= a[1] %></td>
-	<td><%= @product.find(a[0]).price %></td>
-<% end %>
-</tr>
-<%end%>
+<table class="table">
+	<tr>
+		<td>Client:<b> <%= item.name %></b></td>
+		<td>Number:<b> <%= item.phone %></b></td>
+		<td></td>
+	</tr>
+	<tr><td><h6>position</h6></td>
+	<td><h6>price</h6></td>
+	<td><h6>quantity</h6></td></tr>
+	<% @array[i].each do |var| %>
+		<tr>				
+			<td><%= @product.find(var[0]).title %></td>	
+			<td><%= @product.find(var[0]).price %></td>
+			<td><%= var[1] %></td>	
+		</tr>		
+	<% end %>	
 </table>
+<%end%>
+
 
