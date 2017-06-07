@@ -21,7 +21,6 @@
       <%= var[1] %>
     </td>
   </tr>
-
 <% end %>
   <tr>
     <td></td>
@@ -29,12 +28,14 @@
     <td>
       <p>total: <%= totalprice %></p>
     </td>
+    <td></td>
   </tr>
 </table> 
 
-<form action="/cart" method="POST">
+<form action="/lucky" method="POST">
+
 	<div>
-		<input type="hidden" name="order[orderlist]" id="orderdata" >
+		<input type="text" name="order[orderlist]" id="orderdata" >
 	</div>
 
   <div class="form-group">

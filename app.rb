@@ -26,18 +26,27 @@ get '/product/:id' do
 	erb :product
 end
 
+# get '/cart' do 
+# 	@product = Product.all
+# 	orders = params[:orders_btn]
+# 	@variable = line_split orders
+# 	erb :cart
+# end
+
 post '/cart' do
 	@product = Product.all
 	orders = params[:orders_btn]
-
 	@variable = line_split orders
-
-	#
+	erb :cart
 	# @variable.each do |item|
 	#  	item[0] = @product.find(item[0]).title
-	# end
+	# end	
+end
 
-	erb :cart
+post '/lucky' do
+	orderdone = Order.new params[:order]
+	orderdone.save
+	erb 'lucky!'
 end
 
 def line_split orders
