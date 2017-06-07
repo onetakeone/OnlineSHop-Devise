@@ -36,7 +36,7 @@ end
 post '/cart' do
 	@product = Product.all
 	orders = params[:orders_btn]
-	@variable = line_split orders
+	@variable = line_split0 orders
 	erb :cart
 	# @variable.each do |item|
 	#  	item[0] = @product.find(item[0]).title
@@ -49,7 +49,36 @@ post '/lucky' do
 	erb 'lucky!'
 end
 
+get '/admin' do
+	@product = Product.all
+	@admin_orders = Order.all
+
+	 @array = []
+	 @admin_orders.each do |var|
+	 	ohuet = var.orderlist
+	  	ohuet = line_split ohuet
+	  	@array << ohuet
+	 end
+
+	erb :admin
+end
+
 def line_split orders
+	s1 = orders.split(/,/)
+	arr = []
+	s1.each do |x|
+	    s2 = x.split(/\=/)
+		s3 = s2[0].split(/_/)
+		id = s3[1]
+		cnt = s2[1]
+		arr2 = [s3[1], s2[1]]
+		arr.push arr2
+	end
+	arr = arr[0]
+	return arr
+end
+
+def line_split0 orders
 	s1 = orders.split(/,/)
 	arr = []
 	s1.each do |x|
@@ -60,6 +89,5 @@ def line_split orders
 		arr2 = [id, cnt]
 		arr.push arr2
 	end
-	arr.delete(1)
 	return arr
 end

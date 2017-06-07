@@ -1,0 +1,16 @@
+<h2>admin</h2>
+
+<table class="table">
+<% @admin_orders.each_with_index do |item, i|%>
+<tr>
+<td><%= item.name %></td>
+<td><%= item.phone %></td>
+<% @array.each_with_index do |a, x| %>
+	<td><%= @product.find(a[0]).title %></td>
+	<td><%= a[1] %></td>
+	<td><%= @product.find(a[0]).price %></td>
+<% end %>
+</tr>
+<%end%>
+</table>
+
