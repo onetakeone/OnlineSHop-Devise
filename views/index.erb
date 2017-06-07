@@ -1,0 +1,44 @@
+<h1>Hello</h1>
+<div class="hint" style="display: none">
+      Hello to first time visitors!
+</div>
+
+<table>
+	<tr>
+		<td>
+			<div class="container-fluid">
+				<div class="row">
+					<% @product.each do |var| %>
+						<div class="col-md-3">
+							<div class=".services">
+								<div><img src="<%= var.path_to_image_sm %>"></div>
+								<div><p>Name: <%= var.title %></p></div>
+								<div><p>Price <%= var.price %></p></div>
+								<div><p><a href="/product/<%= var.id %>"><u>detailed description</u></a></p></div>
+								<label class="checkbox-inline">
+			  					<input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+								</label>
+								<button class="btn btn-success" onclick="add_to_cart(<%=var.id%>)">buy</button>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</td>
+		<td valign = "top">
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+$(function()
+{
+	orders_input();
+});
+</script>

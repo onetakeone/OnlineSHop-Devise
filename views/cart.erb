@@ -1,0 +1,66 @@
+<table id="orders_table" class="table">
+<thead><tr><td><h3>Order (javascript table)</h3></td><td><h3>Quantity</h3></td></tr></thead>
+</table>
+
+<table class="table">
+<thead><tr><td><h3>#</h3></td><td><h3>Order (ruby + activerecord)</h3></td><td><h3>Price</h3></td><td><h3>Quantity</h3></td></tr></thead>
+<% totalprice = 0 %>
+<% @variable.each_with_index do |var, i| %>
+<% totalprice += @product.find(var[0]).price * var[1].to_i %>
+  <tr>
+    <td>
+      <%= i+1 %>
+    </td>
+    <td>
+      <%= @product.find(var[0]).title %>  
+    </td>
+    <td>
+      <%= @product.find(var[0]).price %>
+    </td>
+    <td>
+      <%= var[1] %>
+    </td>
+  </tr>
+
+<% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <p>total: <%= totalprice %></p>
+    </td>
+  </tr>
+</table> 
+
+<form action="/cart" method="POST">
+	<div>
+		<input type="hidden" name="order[orderlist]" id="orderdata" >
+	</div>
+
+  <div class="form-group">
+    <label id="test-id-2">Name</label>                                                                <!-- id -->
+    <input name="order[name]" type="text" class="form-control" placeholder="type your name" value="<%= @name %>">
+  </div>
+
+  <div class="form-group">
+    <label>Number</label>
+    <input name="order[phone]" type="text" class="form-control test-class-1" placeholder="cell number" value="<%= @number %>">    <!-- class -->
+  </div>
+   
+  <div class="form-group">
+    <label>Adress</label>
+    <input name="order[adress]" type="text" class="form-control" placeholder="enter date" value="<%= @adress %>">
+  </div>
+
+  <div>
+   <input type="submit" value = "order" class="btn btn-primary" onclick="orders_clear()" />
+  </div>
+</form>
+
+<script type="text/javascript">
+$(function()
+{
+	orders_output_database();
+	table_orders_insert();
+});
+</script>
