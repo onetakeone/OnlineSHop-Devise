@@ -2,12 +2,12 @@
 <div class="hint" style="display: none">
       Hello to first time visitors!
 </div>
-
+<%=@product.length%>
 <table>
 	<tr>
 		<td>
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row">				
 					<% @product.each do |var| %>
 						<div class="col-md-3">
 							<div class=".services">
@@ -16,15 +16,19 @@
 								<div><p>Price <%= var.price %></p></div>
 								<div><p><a href="/product/<%= var.id %>"><u>detailed description</u></a></p></div>
 								<label class="checkbox-inline">
-			  					<input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+			  					<input type="checkbox" name="Checkbox[<%=var.id%>]" value="1"> 1
 								</label>
 								<label class="checkbox-inline">
-								  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+								  <input type="checkbox" name="Checkbox[<%=var.id%>]" value="2"> 2
 								</label>
 								<label class="checkbox-inline">
-								  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+								  <input type="checkbox" name="Checkbox[<%=var.id%>]" value="3"> 3
 								</label>
-								<button class="btn btn-success" onclick="add_to_cart(<%=var.id%>)">buy</button>
+								<div>
+									<input type="text" name="nameId<%=var.id%>" id="orderid<%=var.id%>" value="<%=var.id%>" >
+								</div>
+								<button class="btn btn-success" id="addtocart[<%=var.id%>]"> buy </button>
+								
 							</div>
 						</div>
 					<% end %>
@@ -38,8 +42,34 @@
 
 <script type="text/javascript">
 $(function()
-{
+{	 
+	// for(yyy=1; yyy < 7; yyy++) {
+	//  	var idd = document.getElementsByName('nameId'+ yyy);
+	//  	for(xxx=0; xxx<1; xxx++) {
+	//  		alert(idd[xxx].value);
+	//  	}
+	// }
+
+	for(t=1; t<7; t++) {
+	document.getElementById('addtocart'+'['+ t + ']').onclick = function() {addtocartfunction()};
+	
+		function addtocartfunction() {
+			var elementid = document.getElementById('orderid[' + t + ']');
+			
+				alert(elementid.value);
+			
+		}
+
+		function runme() {
+			var orderid = document.getElementById('orderid');
+			add_to_cart(orderid.value);
+		}
+	}
+
+	
+
 	orders_input();
 	button_update();
+
 });
 </script>
