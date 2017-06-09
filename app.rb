@@ -30,7 +30,13 @@ post '/cart' do
 	@product = Product.all
 	orders = params[:orders_btn]
 	@variable = line_split orders
-	erb :cart
+	if orders.length == 0 
+		@error = 'Your cart is empty!'
+		erb :index
+	else
+		erb :cart
+	end
+	
 end
 
 post '/lucky' do
