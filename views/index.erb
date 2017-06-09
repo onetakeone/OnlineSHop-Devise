@@ -25,10 +25,9 @@
 								  <input type="checkbox" name="Checkbox[<%=var.id%>]" value="3"> 3
 								</label>
 								<div>
-									<input type="text" name="nameId<%=var.id%>" id="orderid<%=var.id%>" value="<%=var.id%>" >
+									<input type="hidden" id="<%= var.id %>" value="<%= var.id %>" >
 								</div>
-								<button class="btn btn-success" id="addtocart[<%=var.id%>]"> buy </button>
-								
+								<button class="btn btn-success" onclick="add_to_cart(<%= var.id %>)"> buy </button>		
 							</div>
 						</div>
 					<% end %>
@@ -41,35 +40,29 @@
 </table>
 
 <script type="text/javascript">
-$(function()
-{	 
-	// for(yyy=1; yyy < 7; yyy++) {
-	//  	var idd = document.getElementsByName('nameId'+ yyy);
-	//  	for(xxx=0; xxx<1; xxx++) {
-	//  		alert(idd[xxx].value);
-	//  	}
-	// }
+function add_to_cart(id) {
+    var a = document.getElementsByName('Checkbox[' + id + ']');
+    var counter = 0;
+    for(var i=0; i<4; i++) {
+    		    	
+   		if(a[i].checked) {
+   			alert ("you order " + a[i].value + " positions" + "of " + id);
+			for(var x=0; x < a[i].value*1; x++) {
+	            var hash_key = 'product_' + id;
+				var temp = window.localStorage.getItem(hash_key);
+				temp = temp * 1+1;
+				window.localStorage.setItem(hash_key, temp);
+			}
+    	}
+    	else {
+    		var counter = counter*1 + 1;
+    	}
+    	
+    	if( counter == 3 ) {
+    		alert('set quantity');
+    	}
 
-	for(t=1; t<7; t++) {
-	document.getElementById('addtocart'+'['+ t + ']').onclick = function() {addtocartfunction()};
-	
-		function addtocartfunction() {
-			var elementid = document.getElementById('orderid[' + t + ']');
-			
-				alert(elementid.value);
-			
-		}
-
-		function runme() {
-			var orderid = document.getElementById('orderid');
-			add_to_cart(orderid.value);
-		}
-	}
-
-	
-
-	orders_input();
-	button_update();
-
-});
+    	location.reload();
+    }
+}
 </script>

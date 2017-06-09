@@ -53,6 +53,10 @@ get '/admin' do
 	erb :admin
 end
 
+get '/test' do
+	erb :test
+end
+
 def line_split orders
 	s1 = orders.split(/,/)
 	arr = []

@@ -11,17 +11,6 @@ function recast()
 	button_update();
 }
 
-function add_to_cart(id)
-{
-	var hash_key = 'product_' + id;
-	var x = window.localStorage.getItem(hash_key);
-	x = x * 1 + 1;
-	window.localStorage.setItem(hash_key, x);
-	alert (hash_key);
-	orders_input();
-	button_update();
-}
-
 function orders_input()
 {
 	var orders = orders_list();
