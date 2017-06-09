@@ -1,3 +1,15 @@
+function orders_clear()
+{
+	window.localStorage.clear();
+}
+
+function recast()
+{
+	var x = 'Cart is empty!';
+	$('#ordertable').text(x);
+	window.localStorage.clear();
+	button_update();
+}
 
 function add_to_cart(id)
 {
@@ -61,7 +73,3 @@ function table_orders_insert()
     }
 }
 
-function orders_clear()
-{
-	window.localStorage.clear();
-}

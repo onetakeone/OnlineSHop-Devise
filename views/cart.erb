@@ -1,3 +1,4 @@
+<div id="ordertable">
 <table id="orders_table" class="table">
 <thead><tr><td><h3>Order (javascript table)</h3></td><td><h3>Quantity</h3></td></tr></thead>
 </table>
@@ -31,11 +32,14 @@
     <td></td>
   </tr>
 </table> 
+</div>
+
+
 
 <form action="/lucky" method="POST">
 
 	<div>
-		<input type="text" name="order[orderlist]" id="orderdata" >
+		<input type="hidden" name="order[orderlist]" id="orderdata" >
 	</div>
 
   <div class="form-group">
@@ -52,11 +56,12 @@
     <label>Adress</label>
     <input name="order[adress]" type="text" class="form-control" placeholder="enter date" value="<%= @adress %>">
   </div>
-
-  <div>
-   <input type="submit" value = "order" class="btn btn-primary" onclick="orders_clear()" />
-  </div>
+   <input type="submit" value = "order" class="btn btn-primary" onclick="orders_clear()" /> 
+    <button class="btn btn-danger" onclick="recast(); return false"> cancel </button>
 </form>
+
+
+
 
 <script type="text/javascript">
 $(function()

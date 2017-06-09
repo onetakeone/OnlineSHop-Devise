@@ -26,21 +26,11 @@ get '/product/:id' do
 	erb :product
 end
 
-# get '/cart' do 
-# 	@product = Product.all
-# 	orders = params[:orders_btn]
-# 	@variable = line_split orders
-# 	erb :cart
-# end
-
 post '/cart' do
 	@product = Product.all
 	orders = params[:orders_btn]
 	@variable = line_split orders
 	erb :cart
-	# @variable.each do |item|
-	#  	item[0] = @product.find(item[0]).title
-	# end	
 end
 
 post '/lucky' do
@@ -54,7 +44,7 @@ get '/admin' do
 	@admin_orders = Order.all
 
 	@array = []								  #taking String from database makes impossible to convert it into array
-	@admin_orders.each do |var|				  #I'm pulling 
+	@admin_orders.each do |var|				  #I'm splitting string ordelist and pushing it into @array
 	 	ohuet = var.orderlist
 	  	ohuet = line_split ohuet
 	  	@array << ohuet              
